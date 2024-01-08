@@ -1,5 +1,4 @@
 html {
-    font-family: 'SF Pro Text', sans-serif;
     font-weight: 400;
 	--accent: #2d66ee;
 	--accent-low-op: #306ff5;
@@ -10,6 +9,7 @@ html {
 }
 
 *, *:before, *:after {
+	font-family: 'SF Pro Text', sans-serif;
     box-sizing: border-box;
 	margin: 0;
 	padding: 0;
@@ -24,6 +24,16 @@ h1,h2,h3,h4,h5 {
 .page-padding {
 	padding-left: 6.75rem;
 	padding-right: 6.75rem;
+	
+	@media screen and (max-width: 768px) {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
+	
+	@media screen and (max-width: 425px) {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
 }
 
 .card {
@@ -122,4 +132,20 @@ button, [type="submit"], [type="button"] {
 
 ul, ol {
 	list-style: none;
+}
+
+@media screen and (max-width: 768px) {
+	.desktop {
+		display: none !important;
+	}
+}
+@media screen and (min-width: 769px) {
+	.no-desktop {
+		display: none !important;
+	}
+}
+@media screen and (min-width: 426px) {
+	.mobile {
+		display: none !important;
+	}
 }

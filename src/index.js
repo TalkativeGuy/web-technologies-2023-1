@@ -146,7 +146,15 @@ createApp({
 					value: "Leave a request",
 					img: "src/assets/icons/footer/document_outline_24.svg"
 				},
-			]
+			],
+
+			desktop: false,
 		}
+	},
+	mounted() {
+		this.desktop = window.innerWidth > 768;
+		window.addEventListener("resize", () => {
+			this.desktop = window.innerWidth > 768;
+		});
 	}
 }).mount('#app');

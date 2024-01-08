@@ -2,8 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <!-- <link rel="stylesheet" href="/src/assets/styles/global.css">
@@ -13,7 +12,8 @@
 <body>
 	<div id="app">
 		<div class="title page-padding">
-			<header class="card elevation-4">
+			<input type="checkbox" class="title__header-checkbox" id="title__header-checkbox" hidden>
+			<header class="header card elevation-4">
 				<h1 class="font-accent">IT WEBSITE</h1>
 				<nav>
 					<a href="/">Services</a>
@@ -25,10 +25,11 @@
 				<div class="header__contacts">
 					<div class="header__contacts__item">
 						<img class="header__contacts__item__icon" src="src/assets/icons/smartphone.svg" alt="">
-						<div class="header__contacts__item__text">
-							<span class="header__contacts__item__text__span font-accent">+7 (111) 111 11 11</span>
-							<span class="header__contacts__item__text__span font-accent">+7 (111) 111 11 11</span>
-						</div>
+						<div class="header__contacts__item__text"><span class="header__contacts__item__text__span font-accent">+7 (111) 111 11 11</span></div>
+					</div>
+					<div class="header__contacts__item">
+						<img class="header__contacts__item__icon no-desktop" src="src/assets/icons/smartphone.svg" alt="">
+						<div class="header__contacts__item__text"><span class="header__contacts__item__text__span font-accent">+7 (111) 111 11 11</span></div>
 					</div>
 					<div class="header__contacts__item">
 						<img class="header__contacts__item__icon" src="src/assets/icons/mail.svg" alt="">
@@ -37,7 +38,23 @@
 						</div>
 					</div>
 				</div>
+				<label for="title__header-checkbox" class="header__close no-desktop">
+					<img src="src/assets/icons/close.svg" alt="">
+				</label>
 			</header>
+			<header class="header-minified no-desktop card elevation-4">
+				<label for="title__header-checkbox" class="header-minified__hamburger">
+					<img src="src/assets/icons/hamburger.svg" alt="" class="header-minified__hamburger__img">
+				</label>
+				<h1 class="font-accent">IT WEBSITE</h1>
+				<div class="header__contacts__item">
+					<img class="header__contacts__item__icon" src="src/assets/icons/mail.svg" alt="">
+					<div class="header__contacts__item__text font-accent">
+						<span class="header__contacts__item__text__span"><a href="mailto:itcompany@mail.com" class="font-accent">itcompany@mail.com</a></span>
+					</div>
+				</div>
+			</header>
+
 			<div class="title__message">
 				<h2>Development of <span class="font-accent-low-op">mobile applications</span> and <span class="font-accent-low-op">web services</span> of any complexity</h2>
 				<p>We create mobile applications for iOS, Android that transfer your business to mobile applications of your customers' devices</p>
@@ -64,11 +81,11 @@
 	
 		<main>
 			<section class="section-cycle page-padding">
-				<div class="section-cycle__left">
-					<h2>Full development cycle</h2>
-					<p class="section__paragraph">We use proven technologies</p>
-					<div class="section-cycle__left__technologies">
-						<div class="section-cycle__left__technologies__item">
+				<h2>Full development cycle</h2>
+				<p class="section__paragraph">We use proven technologies</p>
+				<div class="section-cycle__columns">
+					<div class="section-cycle__columns__technologies">
+						<div class="section-cycle__columns__technologies__item">
 							<h3>Web</h3>
 							<p>
 								<span v-for="tech, i in cycleTechnologies.web">
@@ -76,7 +93,7 @@
 								</span>
 							</p>
 						</div>
-						<div class="section-cycle__left__technologies__item">
+						<div class="section-cycle__columns__technologies__item">
 							<h3>Mobile</h3>
 							<p>
 								<span v-for="tech, i in cycleTechnologies.mobile">
@@ -85,14 +102,14 @@
 							</p>
 						</div>
 					</div>
-				</div>
-				<div class="section-cycle__categories">
-					<div class="section-cycle__categories__item" v-for="cycleCategory in cycleCategoriesList">
-						<div class="section-cycle__categories__item__caption">
-							<div class="section-cycle__categories__item__caption__text">{{ cycleCategory }}</div>
-							<div class="section-cycle__categories__item__caption__line"></div>
+					<div class="section-cycle__columns__categories">
+						<div class="section-cycle__columns__categories__item" v-for="cycleCategory in cycleCategoriesList">
+							<div class="section-cycle__columns__categories__item__caption">
+								<div class="section-cycle__columns__categories__item__caption__text">{{ cycleCategory }}</div>
+								<div class="section-cycle__columns__categories__item__caption__line"></div>
+							</div>
+							<img src="src/assets/icons/chevron_right.svg" alt="" class="section-cycle__columns__categories__item__icon">
 						</div>
-						<img src="src/assets/icons/chevron_right.svg" alt="" class="section-cycle__categories__item__icon">
 					</div>
 				</div>
 			</section>
@@ -125,15 +142,18 @@
 								<div class="section-portfolio__list__header__tabs__item__line"></div>
 							</li>
 						</ul>
-						<a href="">
+						<a href="" class="desktop">
 							<button>View 100 more projects</button>
 						</a>
 					</div>
 					<div class="section-portfolio__list__screen">
+						<a href="" class="section-portfolio__list__screen__more-button no-desktop">
+							<button>View 100 more projects</button>
+						</a>
 						<div class="section-portfolio__list__screen__info">
 							<h2>{{ portfolioCompaniesList[portfolioCompanyPickedIndex].name }}</h2>
 							<p class="section-portfolio__list__screen__info__description">
-								The application is designed to search for drugs by availability in pharmacies in cities. During quarantine, the application helped many people,<br>which gives more value.
+								The application is designed to search for drugs by availability in pharmacies in cities. During quarantine, the application helped many people, which gives more value.
 							</p>
 							<div class="section-portfolio__list__screen__info__categories">
 								<span v-for="category, i in portfolioCompaniesList[portfolioCompanyPickedIndex].areas">
@@ -164,6 +184,7 @@
 								<a href=""><img src="src/assets/icons/app_download/ios.svg" alt=""></a>
 								<a href=""><img src="src/assets/icons/app_download/android.svg" alt=""></a>
 							</div>
+							
 						</div>
 						<img src="src/assets/img/i-teka.png" alt="" class="section-portfolio__list__screen__img">
 					</div>
@@ -243,6 +264,10 @@
 				<div class="section-team__info">
 					<h2>Our team</h2>
 					<p class="section__paragraph">Thousand is a full-cycle digital production company with its own product analytics, design, web and mobile development.</p>
+					<div class="section-team__img-block no-desktop">
+						<img src="src/assets/img/team.png" alt="" class="section-team__img-block__img">
+						<div class="section-team__img-block__shadow"></div>
+					</div>
 					<div class="section-team__info__numbers">
 						<div class="section-team__info__numbers__item">
 							<h4 class="section-team__info__numbers__item__number">28</h4>
@@ -259,7 +284,7 @@
 					</div>
 					<p class="section__paragraph">All the necessary specialists - from a designer to a tester - are on our staff. We hire the best specialists in the market. It's expensive but worth it</p>
 				</div>
-				<div class="section-team__img-block">
+				<div class="section-team__img-block desktop">
 					<img src="src/assets/img/team.png" alt="" class="section-team__img-block__img">
 					<div class="section-team__img-block__shadow"></div>
 				</div>
@@ -269,27 +294,30 @@
 				<img src="src/assets/img/form_bg_noise.png" alt="" class="bg-noise">
 				<div class="section_book__text">
 					<h2>Get the book for free by leaving your contacts</h2>
-					<form action="" class="section_book__text__form card elevation-32">
-						<div class="section_book__text__form__inputs">
-							<div class="text-input">
-								<input type="text" placeholder=" ">
-								<div class="placeholder">Phone number</div>
+					<div class="section_book__text__form-wrapper">
+						<form action="" class="section_book__text__form card elevation-32">
+							<div class="section_book__text__form__inputs">
+								<div class="text-input">
+									<input type="text" placeholder=" ">
+									<div class="placeholder">Phone number</div>
+								</div>
+								<div class="text-input">
+									<input type="text" placeholder=" ">
+									<div class="placeholder">Your full name</div>
+								</div>
+								<div class="text-input">
+									<input type="text" placeholder=" ">
+									<div class="placeholder">E-mail</div>
+								</div>
 							</div>
-							<div class="text-input">
-								<input type="text" placeholder=" ">
-								<div class="placeholder">Your full name</div>
+							<div class="section_book__text__form__submit-wrapper">
+								<input type="submit" value="Send me ebook to my mail">
 							</div>
-							<div class="text-input">
-								<input type="text" placeholder=" ">
-								<div class="placeholder">E-mail</div>
-							</div>
-						</div>
-						<div class="section_book__text__form__submit-wrapper">
-							<input type="submit" value="Send me ebook to my mail">
-						</div>
-					</form>
+						</form>
+						<img src="src/assets/img/book.png" alt="" class="section_book__text__form-wrapper__img no-desktop">
+					</div>
 				</div>
-				<img src="src/assets/img/book.png" alt="" class="section_book__img">
+				<img src="src/assets/img/book.png" alt="" class="section_book__img desktop">
 			</section>
 
 			<section class="section-faq page-padding">
@@ -313,7 +341,7 @@
 			</section>
 		</main>
 
-		<footer class="page-padding elevation-8">
+		<footer class="footer page-padding elevation-8">
 			<div class="footer-inner">
 				<h2>IT WEBSITE</h2>
 				<div class="footer-info">
