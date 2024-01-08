@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="/src/assets/styles/global.css">
+    <link rel="stylesheet" href="/src/assets/styles/fonts.css"> -->
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+	<div id="app">
+		<div class="title page-padding">
+			<header class="card elevation-4">
+				<h1 class="font-accent">IT WEBSITE</h1>
+				<nav>
+					<a href="/">Services</a>
+					<a href="/">Media</a>
+					<a href="/">Cases</a>
+					<a href="/">FAQ</a>
+					<a href="/">Contacts</a>
+				</nav>
+				<div class="header__contacts">
+					<div class="header__contacts__item">
+						<img class="header__contacts__item__icon" src="src/assets/icons/smartphone.svg" alt="">
+						<div class="header__contacts__item__text">
+							<span class="header__contacts__item__text__span font-accent">+7 (111) 111 11 11</span>
+							<span class="header__contacts__item__text__span font-accent">+7 (111) 111 11 11</span>
+						</div>
+					</div>
+					<div class="header__contacts__item">
+						<img class="header__contacts__item__icon" src="src/assets/icons/mail.svg" alt="">
+						<div class="header__contacts__item__text font-accent">
+							<span class="header__contacts__item__text__span"><a href="mailto:itcompany@mail.com" class="font-accent">itcompany@mail.com</a></span>
+						</div>
+					</div>
+				</div>
+			</header>
+			<div class="title__message">
+				<h2>Development of <span class="font-accent-low-op">mobile applications</span> and <span class="font-accent-low-op">web services</span> of any complexity</h2>
+				<p>We create mobile applications for iOS, Android that transfer your business to mobile applications of your customers' devices</p>
+			</div>
+			<div class="title__images">
+				<div class="title__images__item" style="background-image: url('src/assets/img/title/column-left.webp')"></div>
+				<div class="title__images__item" style="background-image: url('src/assets/img/title/column-right.webp')"></div>
+			</div>
+			<form class="title__form card elevation-32">
+				<h3>Leave your contacts and we will call you back<br>within 30 minutes</h3>
+				<div class="title__form__inputs">
+					<div class="text-input">
+						<input type="text" placeholder=" ">
+						<div class="placeholder">Phone number</div>
+					</div>
+					<div class="text-input">
+						<input type="text" placeholder=" ">
+						<div class="placeholder">Full name</div>
+					</div>
+					<input type="submit" value="Get consultation">
+				</div>
+			</form>
+		</div>
+	
+		<main>
+			<section class="section-cycle page-padding">
+				<div class="section-cycle__left">
+					<h2>Full development cycle</h2>
+					<p class="section__paragraph">We use proven technologies</p>
+					<div class="section-cycle__left__technologies">
+						<div class="section-cycle__left__technologies__item">
+							<h3>Web</h3>
+							<p>
+								<span v-for="tech, i in cycleTechnologies.web">
+									{{ tech }} <span class="font-accent" v-if="i < cycleTechnologies.web.length-1">/ </span> 
+								</span>
+							</p>
+						</div>
+						<div class="section-cycle__left__technologies__item">
+							<h3>Mobile</h3>
+							<p>
+								<span v-for="tech, i in cycleTechnologies.mobile">
+									{{ tech }} <span class="font-accent" v-if="i < cycleTechnologies.mobile.length-1">/ </span> 
+								</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="section-cycle__categories">
+					<div class="section-cycle__categories__item" v-for="cycleCategory in cycleCategoriesList">
+						<div class="section-cycle__categories__item__caption">
+							<div class="section-cycle__categories__item__caption__text">{{ cycleCategory }}</div>
+							<div class="section-cycle__categories__item__caption__line"></div>
+						</div>
+						<img src="src/assets/icons/chevron_right.svg" alt="" class="section-cycle__categories__item__icon">
+					</div>
+				</div>
+			</section>
+	
+			<section class="section-industries section-gray-bg page-padding">
+				<h2>Developed more than <span class="font-accent">100</span> projects in <span class="font-accent">15</span> industries</h2>
+				<ul class="section-industries__list">
+					<li class="section-industries__list__item" v-for="industry in industriesList">
+						<div class="section-industries__list__item__icon-wrapper card elevation-4">
+							<img :src="`src/assets/icons/industries/${industry.img}`" alt="" class="section-industries__list__item__icon">
+						</div>
+						<div class="section-industries__list__item__caption">{{ industry.name }}</div>
+					</li>
+				</ul>
+			</section>
+
+			<section class="section-portfolio section-gray-bg page-padding">
+				<h2>Projects we are proud of</h2>
+				<p class="section__paragraph">Our software development company is truly proud of the wonderful clients we have worked with. We enjoy a long-term partnership</p>
+				<div class="section-portfolio__list">
+					<div class="section-portfolio__list__header">
+						<ul class="section-portfolio__list__header__tabs">
+							<li 
+								class="section-portfolio__list__header__tabs__item" 
+								v-for="portfolioCompany, i in portfolioCompaniesList"
+								:class="i == portfolioCompanyPickedIndex ? 'section-portfolio__list__header__tabs__item-picked' : ''"
+								@click="portfolioCompanyPickedIndex = i"
+							>
+								<div class="section-portfolio__list__header__tabs__item__text">{{ portfolioCompany.name }}</div>
+								<div class="section-portfolio__list__header__tabs__item__line"></div>
+							</li>
+						</ul>
+						<a href="">
+							<button>View 100 more projects</button>
+						</a>
+					</div>
+					<div class="section-portfolio__list__screen">
+						<div class="section-portfolio__list__screen__info">
+							<h2>{{ portfolioCompaniesList[portfolioCompanyPickedIndex].name }}</h2>
+							<p class="section-portfolio__list__screen__info__description">
+								The application is designed to search for drugs by availability in pharmacies in cities. During quarantine, the application helped many people,<br>which gives more value.
+							</p>
+							<div class="section-portfolio__list__screen__info__categories">
+								<span v-for="category, i in portfolioCompaniesList[portfolioCompanyPickedIndex].areas">
+									{{ category }} <span class="font-accent" v-if="i < portfolioCompaniesList[portfolioCompanyPickedIndex].areas.length-1">/ </span>
+								</span>
+							</div>
+							<div class="section-portfolio__list__screen__info__additional">
+								<div class="section-portfolio__list__screen__info__additional__item">
+									<img src="src/assets/icons/location.svg" alt="" class="section-portfolio__list__screen__info__additional__item__icon">
+									<span>Kazakhstan</span>
+								</div>
+								<div class="section-portfolio__list__screen__info__additional__item">
+									<img src="src/assets/icons/industries/work_outline_24.svg" alt="" class="section-portfolio__list__screen__info__additional__item__icon">
+									<span>Medicine</span>
+								</div>
+							</div>
+							<div class="section-portfolio__list__screen__info__numbers">
+								<div class="section-portfolio__list__screen__info__numbers__item">
+									<div class="section-portfolio__list__screen__info__numbers__item__number">400%</div>
+									<div class="section-portfolio__list__screen__info__numbers__item__caption">User Growth</div>
+								</div>
+								<div class="section-portfolio__list__screen__info__numbers__item">
+									<div class="section-portfolio__list__screen__info__numbers__item__number">+ 200 000</div>
+									<div class="section-portfolio__list__screen__info__numbers__item__caption">Active Users</div>
+								</div>
+							</div>
+							<div class="section-portfolio__list__screen__info__app-download">
+								<a href=""><img src="src/assets/icons/app_download/ios.svg" alt=""></a>
+								<a href=""><img src="src/assets/icons/app_download/android.svg" alt=""></a>
+							</div>
+						</div>
+						<img src="src/assets/img/i-teka.png" alt="" class="section-portfolio__list__screen__img">
+					</div>
+				</div>
+			</section>
+
+			<section class="section-discuss section-blue page-padding">
+				<img src="src/assets/img/form_bg_noise.png" alt="" class="bg-noise">
+				<div class="section-discuss__message">
+					<h2>Let's discuss<br>Your project</h2>
+					<p class="section__paragraph">Let's figure out how to create an effective application,<br>its cost and terms of its development</p>
+				</div>
+				<form action="" class="section-discuss__form card elevation-32">
+					<div class="section-discuss__form__inputs">
+						<div class="text-input">
+							<input type="text" placeholder=" ">
+							<div class="placeholder">Best phone number</div>
+						</div>
+						<div class="text-input">
+							<input type="text" placeholder=" ">
+							<div class="placeholder">Full name</div>
+						</div>
+					</div>
+					<input type="submit" value="Discuss the project">
+				</form>
+			</section>
+
+			<section class="section-stages page-padding">
+				<h2>Application Development Stages</h2>
+				<div class="section-stages__cards">
+					<div class="section-stages__cards__item card elevation-8">
+						<div class="section-stages__cards__item__head">
+							<img src="src/assets/icons/stages/planing.svg" alt="" class="section-stages__cards__item__head__icon">
+							<div class="section-stages__cards__item__head__text">Analysis</div>
+						</div>
+						<div class="section-stages__cards__item__description">We write technical specifications for development, taking into account the business processes and technologies of the customer and the needs of users.</div>
+					</div>
+					<div class="section-stages__cards__item card elevation-8">
+						<div class="section-stages__cards__item__head">
+							<img src="src/assets/icons/stages/graphic-design.svg" alt="" class="section-stages__cards__item__head__icon">
+							<div class="section-stages__cards__item__head__text">Design</div>
+						</div>
+						<div class="section-stages__cards__item__description">We adapt the customer's corporate identity to the platform guidelines. We draw convenient and understandable interfaces.</div>
+					</div>
+					<div class="section-stages__cards__item card elevation-8">
+						<div class="section-stages__cards__item__head">
+							<img src="src/assets/icons/stages/coding-language.svg" alt="" class="section-stages__cards__item__head__icon">
+							<div class="section-stages__cards__item__head__text">Development</div>
+						</div>
+						<div class="section-stages__cards__item__description">We create an extensible architecture, write clean and stable code. We integrate with customer technologies.</div>
+					</div>
+					<div class="section-stages__cards__item card elevation-8">
+						<div class="section-stages__cards__item__head">
+							<img src="src/assets/icons/stages/security.svg" alt="" class="section-stages__cards__item__head__icon">
+							<div class="section-stages__cards__item__head__text">Testing</div>
+						</div>
+						<div class="section-stages__cards__item__description">We carry out functional testing and do bug fixes. We adapt the application to different phone resolutions</div>
+					</div>
+					<div class="section-stages__cards__item card elevation-8">
+						<div class="section-stages__cards__item__head">
+							<img src="src/assets/icons/stages/hosting 1.svg" alt="" class="section-stages__cards__item__head__icon">
+							<div class="section-stages__cards__item__head__text">Launching</div>
+						</div>
+						<div class="section-stages__cards__item__description">We design the application page and publish it in the App Store and Google Play stores.</div>
+					</div>
+					<div class="section-stages__cards__item card elevation-8">
+						<div class="section-stages__cards__item__head">
+							<img src="src/assets/icons/stages/application.svg" alt="" class="section-stages__cards__item__head__icon">
+							<div class="section-stages__cards__item__head__text">Support</div>
+						</div>
+						<div class="section-stages__cards__item__description">We monitor the stability of the application, update it for new devices and versions of iOS and Android.</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section-team section-gray-bg page-padding">
+				<div class="section-team__info">
+					<h2>Our team</h2>
+					<p class="section__paragraph">Thousand is a full-cycle digital production company with its own product analytics, design, web and mobile development.</p>
+					<div class="section-team__info__numbers">
+						<div class="section-team__info__numbers__item">
+							<h4 class="section-team__info__numbers__item__number">28</h4>
+							<h4 class="section-team__info__numbers__item__caption">team members</h4>
+						</div>
+						<div class="section-team__info__numbers__item">
+							<h4 class="section-team__info__numbers__item__number">+100</h4>
+							<h4 class="section-team__info__numbers__item__caption">projects</h4>
+						</div>
+						<div class="section-team__info__numbers__item">
+							<h4 class="section-team__info__numbers__item__number">7 years</h4>
+							<h4 class="section-team__info__numbers__item__caption">in IT sphere</h4>
+						</div>
+					</div>
+					<p class="section__paragraph">All the necessary specialists - from a designer to a tester - are on our staff. We hire the best specialists in the market. It's expensive but worth it</p>
+				</div>
+				<div class="section-team__img-block">
+					<img src="src/assets/img/team.png" alt="" class="section-team__img-block__img">
+					<div class="section-team__img-block__shadow"></div>
+				</div>
+			</section>
+
+			<section class="section_book section-blue page-padding">
+				<img src="src/assets/img/form_bg_noise.png" alt="" class="bg-noise">
+				<div class="section_book__text">
+					<h2>Get the book for free by leaving your contacts</h2>
+					<form action="" class="section_book__text__form card elevation-32">
+						<div class="section_book__text__form__inputs">
+							<div class="text-input">
+								<input type="text" placeholder=" ">
+								<div class="placeholder">Phone number</div>
+							</div>
+							<div class="text-input">
+								<input type="text" placeholder=" ">
+								<div class="placeholder">Your full name</div>
+							</div>
+							<div class="text-input">
+								<input type="text" placeholder=" ">
+								<div class="placeholder">E-mail</div>
+							</div>
+						</div>
+						<div class="section_book__text__form__submit-wrapper">
+							<input type="submit" value="Send me ebook to my mail">
+						</div>
+					</form>
+				</div>
+				<img src="src/assets/img/book.png" alt="" class="section_book__img">
+			</section>
+
+			<section class="section-faq page-padding">
+				<h2>FAQ</h2>
+				<ul class="section-faq__list">
+					<div class="section-faq__list__column" v-for="colIndex in [0,1]">
+						<li class="section-faq__list__column__item" v-for="faqItem, itemIndex in colIndex == 0 ? faq.slice(0, Math.ceil(faq.length/2)) : faq.slice(Math.ceil(faq.length/2), faq.length)">
+							<input type="checkbox" class="section-faq__list__column__item__checkbox" :id="`section-faq__list__column__item__checkbox_${colIndex}_${itemIndex}`" hidden>
+							<label class="section-faq__list__column__item__head" :for="`section-faq__list__column__item__checkbox_${colIndex}_${itemIndex}`">
+								<div class="section-faq__list__column__item__head__text">{{faqItem.question}}</div>
+								<div class="section-faq__list__column__item__head__icon-wrapper elevation-4">
+									<svg class="section-faq__list__column__item__head__icon" viewBox="0 0 36 36" fill="none">
+										<path d="M19.5 19.5V28.5C19.5 29.3284 18.8284 30 18 30C17.1716 30 16.5 29.3284 16.5 28.5V19.5H7.5C6.67157 19.5 6 18.8284 6 18C6 17.1716 6.67157 16.5 7.5 16.5H16.5V7.5C16.5 6.67157 17.1716 6 18 6C18.8284 6 19.5 6.67157 19.5 7.5V16.5H28.5C29.3284 16.5 30 17.1716 30 18C30 18.8284 29.3284 19.5 28.5 19.5H19.5Z"/>
+									</svg>
+								</div>
+							</label>
+							<div class="section-faq__list__column__item__body" v-html="faqItem.answer"></div>
+						</li>
+					</div>
+				</ul>
+			</section>
+		</main>
+
+		<footer class="page-padding elevation-8">
+			<div class="footer-inner">
+				<h2>IT WEBSITE</h2>
+				<div class="footer-info">
+					<div class="footer-info__item" v-for="item in footerInfoItems">
+						<div class="footer-info__item__name">
+							<img :src="item.img" alt="" class="footer-info__item__name__icon">
+							<div class="footer-info__item__name__caption">{{ item.name }}</div>
+						</div>
+						<div class="footer-info__item__value">{{ item.value }}</div>
+					</div>
+				</div>
+				<div class="footer-motto">
+					<img src="src/assets/icons/footer/motto_map.svg" alt="">
+					<span>We work throughout world</span>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	<script src="src/index.js"></script>
+</body>
+</html>

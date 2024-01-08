@@ -1,0 +1,125 @@
+html {
+    font-family: 'SF Pro Text', sans-serif;
+    font-weight: 400;
+	--accent: #2d66ee;
+	--accent-low-op: #306ff5;
+	--gray-400: #98a2b3;
+	--gray-500: #667085;
+	--gray-800: #1d2939;
+	--gray-900: #101828;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	color: #101828;
+	cursor: default;
+}
+
+h1,h2,h3,h4,h5 {
+    font-family: 'Inter', sans-serif;
+}
+
+.page-padding {
+	padding-left: 6.75rem;
+	padding-right: 6.75rem;
+}
+
+.card {
+	background: #fff;
+	border-radius: 0.75rem;
+	padding: 1.5rem;
+}
+
+.elevation-4 {
+	box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+}
+.elevation-8 {
+	box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.08), 0px 0px 2px 0px rgba(0, 0, 0, 0.08);
+}
+.elevation-32 {
+	box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.16), 0px 0px 2px 0px rgba(0, 0, 0, 0.08);
+}
+
+.font-accent {
+	color: var(--accent);
+}
+.font-accent-low-op {
+	color: var(--accent-low-op);
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+	&, & * {
+		cursor: pointer;
+	}
+}
+
+.text-input {
+	position: relative;
+	.placeholder {
+		position: absolute;
+		top: 1.5rem;
+		left: 0;
+		font-weight: 400;
+		line-height: 1rem;
+		letter-spacing: -0.00488rem;
+		transition: 0.2s;
+		color: #858d9d;
+		font-size: 1.0625rem;
+		line-height: 1.375rem;
+	}
+	input {
+		&[type="text"], &[type="password"], &[type="number"] {
+			margin-top: 1rem;
+			padding: .5rem 0;
+			border: none;
+			border-bottom: 1px solid #d0d5dd;
+			outline: none;
+			font-size: 1.0625rem;
+			font-weight: 400;
+			line-height: 1.375rem;
+			letter-spacing: -0.0255rem;
+			position: relative;
+			z-index: 1;
+			background: #fff0;
+			cursor: text;
+			width: 100%;
+			
+			&:not(:placeholder-shown), &:focus {
+				border-bottom-color: #bec3cc;
+				& ~ .placeholder {
+					top: 0;
+					font-size: 0.8125rem;
+					font-weight: 500;
+					color: #667085;
+				}
+			}
+		}
+	}
+}
+
+button, [type="submit"], [type="button"] {
+	background: var(--accent);
+	border: none;
+	padding: .69rem 1.5rem;
+	text-align: center;
+	color: #fff;
+	font-size: 0.875rem;
+	font-weight: 600;
+	line-height: 1.125rem;
+	letter-spacing: -0.00963rem;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition: 0.3s;
+
+	&:hover {
+		background: var(--accent-low-op);
+	}
+}
+
+ul, ol {
+	list-style: none;
+}

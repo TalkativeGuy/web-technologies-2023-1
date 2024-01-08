@@ -1,0 +1,10 @@
+{
+	"dependencies": {
+		"http-server": "^14.1.1",
+		"sass": "^1.69.7",
+		"sass-loader": "^13.3.3"
+	},
+	"scripts": {
+		"compile:sass": "sass src/assets/styles/style.scss src/styles.css -w"
+	}
+}
