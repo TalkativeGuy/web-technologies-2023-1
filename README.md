@@ -1,4 +1,4 @@
-Свёрстанная страница "IT Company@ - ветка lesson-7-finished
+Свёрстанная страница "IT Company" - ветка lesson-7-finished
 
 Лаба 8 - lesson-8
 
