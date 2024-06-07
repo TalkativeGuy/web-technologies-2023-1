@@ -1,92 +1,92 @@
 <?php
-// 1
-$a = 5;
-$b = -3;
-
-if ($a >= 0 && $b >= 0) {
-    echo "Разность: " . ($a - $b);
-} elseif ($a < 0 && $b < 0) {
-    echo "Произведение: " . ($a * $b);
-} else {
-    echo "Сумма: " . ($a + $b);
+echo 'Задание 1 <br>';
+function printNumbers()
+{
+    $number = 0;
+    do {
+        if ($number == 0) echo "$number - ноль<br>";
+		elseif ($number % 2 == 0) echo "$number - чётное<br>";
+		else echo "$number - нечётное<br>";
+		$number++;
+    } while ($number <= 10);  
 }
+echo printNumbers();
+echo "<br>";
+echo "<br>";
+
+echo 'Задание 2 <br>';
+$regions = [
+    'Московская область' => ['Москва', 'Зеленоград', 'Клин'],
+    'Ленинградская область' => ['Санкт-Петербург', 'Всеволожск', 'Павловск', 'Кронштадт'],
+    'Рязанская область' => ['Рязань', 'Касимов', 'Скопин']
+];
+foreach ($regions as $region => $cities) {
+    echo "$region:<br>";
+    echo implode(', ', $cities) . '.<br>';
+}
+echo "<br>";
 echo "<br>";
 
 
-// 2
-$a = 10;
-switch ($a) {
-    case 0: echo "0, ";
-    case 1: echo "1, ";
-    case 2: echo "2, ";
-    case 3: echo "3, ";
-    case 4: echo "4, ";
-    case 5: echo "5, ";
-    case 6: echo "6, ";
-    case 7: echo "7, ";
-    case 8: echo "8, ";
-    case 9: echo "9, ";
-    case 10: echo "10, ";
-    case 11: echo "11, ";
-    case 12: echo "12, ";
-    case 13: echo "13, ";
-    case 14: echo "14, ";
-    case 15: echo "15";
-    break;
-    default: echo "Значение вне диапазона [0..15]";
+echo 'Задание 3 <br>';
+function transliterate($text) {
+    $letters = [
+        'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'e', 'ж' => 'zh', 
+        'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 
+        'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'kh', 'ц' => 'ts', 
+        'ч' => 'ch', 'ш' => 'sh', 'щ' => 'shch', 'ы' => 'y', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya'
+    ];
+
+    return str_replace(array_keys($letters), array_values($letters), mb_strtolower($text));
 }
+echo transliterate('Это пыха');
+echo "<br>";
 echo "<br>";
 
 
-// 3
+echo 'Задание 4 <br>';
+$menu = [
+    'Главная' => [],
+    'О компании' => [
+        'История' => [],
+        'Команда' => [],
+        'Партнеры' => []
+    ],
+    'Продукты' => [
+        'Новые продукты' => [],
+        'Акции' => [],
+        'Каталог' => []
+    ],
+    'Контакты' => []
+];
+function printMenu($menuItems, $isSubmenu = false) {
+    $class = $isSubmenu ? ' class="submenu"' : ' class="main-menu"';
+    echo "<ul$class>";
 
-function add($a, $b) {
-    return $a + $b;
-}
-
-function subtract($a, $b) {
-    return $a - $b;
-}
-
-function multiply($a, $b) {
-    return $a * $b;
-}
-
-function divide($a, $b) {
-    if ($b == 0) {
-        return "Деление на ноль!";
+    foreach ($menuItems as $key => $subItems) {
+        echo "<li>";
+        echo $key;
+        if (!empty($subItems)) {
+            printMenu($subItems, true);
+        }
+        echo "</li>";
     }
-    return $a / $b;
+    echo "</ul>";
 }
-
-
-// 4
-
-function mathOperation($arg1, $arg2, $operation) {
-    switch ($operation) {
-        case 'add':
-            return add($arg1, $arg2);
-        case 'subtract':
-            return subtract($arg1, $arg2);
-        case 'multiply':
-            return multiply($arg1, $arg2);
-        case 'divide':
-            return divide($arg1, $arg2);
-        default:
-            return "Неизвестная операция";
-    }
-}
-
-echo "Результат операции: " . mathOperation(10, 5, 'add');
+printMenu($menu);
+echo "<br>";
 echo "<br>";
 
 
-// 6
-function power($val, $pow) {
-    if ($pow == 0) {
-        return 1;
-    }
-    return $val * power($val, $pow - 1);
+echo 'Задание 6 <br>';
+foreach ($regions as $region => $cities) {
+    $filteredCities = array_filter($cities, function ($city) {
+        return mb_substr($city, 0, 1) == 'К';
+    });
+
+    if (!empty($filteredCities)) {
+        echo "$region:<br>";
+        echo implode(', ', $filteredCities) . '.<br>';
+ 	}
 }
-echo "2^3 = " . power(2, 3);
 ?>
