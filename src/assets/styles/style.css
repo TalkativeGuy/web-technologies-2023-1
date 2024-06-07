@@ -4,11 +4,3 @@
 @import "./catalog.css";
 @import "./post.css";
 @import "./photo.css";
-
-.test {
-    color: yellow !important;
-}
-
-.test {
-    color: red !important;
-}

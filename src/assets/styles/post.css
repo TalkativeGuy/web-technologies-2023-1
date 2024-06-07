@@ -11,3 +11,12 @@
 .post-item__title {
     font-weight: 600;
 }
+
+.post-detail {
+	margin: 20px;
+}
+.comment {
+	margin: 10px 0;
+	padding: 10px;
+	border: 1px solid #ccc;
+}
