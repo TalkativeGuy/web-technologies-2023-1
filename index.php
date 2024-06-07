@@ -1,92 +1,42 @@
 <?php
-echo 'Задание 1 <br>';
-function printNumbers()
-{
-    $number = 0;
-    do {
-        if ($number == 0) echo "$number - ноль<br>";
-		elseif ($number % 2 == 0) echo "$number - чётное<br>";
-		else echo "$number - нечётное<br>";
-		$number++;
-    } while ($number <= 10);  
+$conn = new mysqli('localhost', 'username', 'password', 'database');
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-echo printNumbers();
-echo "<br>";
-echo "<br>";
+$sql = "SELECT id, name, image, price FROM products";
+$result = $conn->query($sql);
+?>
 
-echo 'Задание 2 <br>';
-$regions = [
-    'Московская область' => ['Москва', 'Зеленоград', 'Клин'],
-    'Ленинградская область' => ['Санкт-Петербург', 'Всеволожск', 'Павловск', 'Кронштадт'],
-    'Рязанская область' => ['Рязань', 'Касимов', 'Скопин']
-];
-foreach ($regions as $region => $cities) {
-    echo "$region:<br>";
-    echo implode(', ', $cities) . '.<br>';
-}
-echo "<br>";
-echo "<br>";
-
-
-echo 'Задание 3 <br>';
-function transliterate($text) {
-    $letters = [
-        'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd', 'е' => 'e', 'ё' => 'e', 'ж' => 'zh', 
-        'з' => 'z', 'и' => 'i', 'й' => 'y', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n', 'о' => 'o', 
-        'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'kh', 'ц' => 'ts', 
-        'ч' => 'ch', 'ш' => 'sh', 'щ' => 'shch', 'ы' => 'y', 'э' => 'e', 'ю' => 'yu', 'я' => 'ya'
-    ];
-
-    return str_replace(array_keys($letters), array_values($letters), mb_strtolower($text));
-}
-echo transliterate('Это пыха');
-echo "<br>";
-echo "<br>";
-
-
-echo 'Задание 4 <br>';
-$menu = [
-    'Главная' => [],
-    'О компании' => [
-        'История' => [],
-        'Команда' => [],
-        'Партнеры' => []
-    ],
-    'Продукты' => [
-        'Новые продукты' => [],
-        'Акции' => [],
-        'Каталог' => []
-    ],
-    'Контакты' => []
-];
-function printMenu($menuItems, $isSubmenu = false) {
-    $class = $isSubmenu ? ' class="submenu"' : ' class="main-menu"';
-    echo "<ul$class>";
-
-    foreach ($menuItems as $key => $subItems) {
-        echo "<li>";
-        echo $key;
-        if (!empty($subItems)) {
-            printMenu($subItems, true);
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог товаров</title>
+    <style rel="stylesheet" href="styles/catalog.css"></style>
+</head>
+<body>
+    <h1>Каталог товаров</h1>
+    <div class="catalog">
+        <?php
+        if ($result->num_rows > 0) {
+            // Выводим данные о каждом товаре
+            while($row = $result->fetch_assoc()) {
+                echo "<div class='product'>";
+                echo "<img src='images/" . $row["image"] . "' alt='" . $row["name"] . "'>";
+                echo "<div class='product-name'>" . $row["name"] . "</div>";
+                echo "<div class='product-price'>" . $row["price"] . " руб.</div>";
+                echo "<a href='product.php?id=" . $row["id"] . "'>Подробнее</a>";
+                echo "</div>";
+            }
+        } else {
+            echo "Нет товаров в каталоге.";
         }
-        echo "</li>";
-    }
-    echo "</ul>";
-}
-printMenu($menu);
-echo "<br>";
-echo "<br>";
+        ?>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>
 
-
-echo 'Задание 6 <br>';
-foreach ($regions as $region => $cities) {
-    $filteredCities = array_filter($cities, function ($city) {
-        return mb_substr($city, 0, 1) == 'К';
-    });
-
-    if (!empty($filteredCities)) {
-        echo "$region:<br>";
-        echo implode(', ', $filteredCities) . '.<br>';
- 	}
-}
+<?php
+$conn->close();
 ?>

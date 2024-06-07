@@ -1,0 +1,23 @@
+.product {
+	border: 1px solid #ddd;
+	padding: 10px;
+	margin: 10px;
+	text-align: center;
+	width: 200px;
+	float: left;
+}
+.product img {
+	width: 100%;
+	height: auto;
+}
+.product-name {
+	font-size: 1.2em;
+	margin: 10px 0;
+}
+.product-price {
+	color: #b12704;
+	font-weight: bold;
+}
+.clear {
+	clear: both;
+}
